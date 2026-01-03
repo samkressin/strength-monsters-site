@@ -255,13 +255,16 @@ h2{
 
 
 .text-content {
- /* margin-left: 580px;*/ /* slightly more than video width to clear it */
+ * margin-left: 580px; /* slightly more than video width to clear it */
 }
 
 .text-content ul {
+  display: inline-block;
+  text-align: left; /*added these to try to fix*/
   list-style: none;
   padding-left: 0;
   margin-left: 0;
+
 }
 
 .text-content li {
