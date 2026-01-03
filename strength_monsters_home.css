@@ -262,9 +262,11 @@ h2{
   /*display: inline-block;
   text-align: left; *//*added these to try to fix*/
   width:fit-content;
+  margin-left: auto; /*new*/
+  margin-right: auto;
   list-style: none;
   padding-left: 0;
-  margin-left: 0;
+  /*margin-left: 0;*/
 
 }
 
