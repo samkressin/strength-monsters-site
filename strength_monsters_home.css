@@ -260,7 +260,7 @@ h2{
 
 .text-content ul {
   display: inline-block;
-  text-align: left; /*added these to try to fix*/
+  text-align: center; /*added these to try to fix*/
   list-style: none;
   padding-left: 0;
   margin-left: 0;
