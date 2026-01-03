@@ -255,7 +255,7 @@ h2{
 
 
 .text-content {
-  margin-left: 580px; /* slightly more than video width to clear it */
+ /* margin-left: 580px;*/ /* slightly more than video width to clear it */
 }
 
 .text-content ul {
