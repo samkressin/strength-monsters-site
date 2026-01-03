@@ -255,23 +255,16 @@ h2{
 
 
 .text-content {
- width: fit-content;
-  margin-left:auto; /* 580 px; slightly more than video width to clear it */
-  margin-right:auto;
-  list-style:none;
+  display: flex;
+  justify-content: center;
 }
 
 .text-content ul {
-  /*display: inline-block;
-  text-align: left; *//*added these to try to fix*/
-  width:fit-content;
-  margin-left: auto; /*new*/
-  margin-right: auto;
   list-style: none;
   padding-left: 0;
-  /*margin-left: 0;*/
-
+  margin: 0;
 }
+
 
 .text-content li {
   position: relative;
