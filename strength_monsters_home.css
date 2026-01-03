@@ -259,8 +259,8 @@ h2{
 }
 
 .text-content ul {
-  display: inline-block;
-  text-align: left; /*added these to try to fix*/
+  /*display: inline-block;
+  text-align: left; *//*added these to try to fix*/
   width:fit-content;
   list-style: none;
   padding-left: 0;
