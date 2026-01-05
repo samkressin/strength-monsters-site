@@ -35,13 +35,13 @@
 
   <div class="episode-grid">
     <div class="episode-card">
-      <div class="episode-badge">E01</div>
-      <img class="episode-thumb" src="imgs/ep01-thumb.jpg" alt="Strength Monsters Episode 1 thumbnail">
-      <h3>Episode 1 — Eat A Burrito</h3>
-      <small class="episode-meta">Approx. runtime: TBD</small>
-     <div class="button-row">
-      <a class="button" href="watch-01.html">Watch Episode 1</a>
-      </div>
+        <div class="episode-badge">E01</div>
+        <img class="episode-thumb" src="imgs/ep01-thumb.jpg" alt="Strength Monsters Episode 1 thumbnail">
+        <h3>Episode 1 — Eat A Burrito</h3>
+        <small class="episode-meta">Approx. runtime: TBD</small>
+        <div class="button-row">
+        <a id="link-home" class="button" href="watch-01.html">Watch Episode 1</a>
+        </div>
     </div>
 
     <div class="episode-card">
@@ -51,8 +51,17 @@
       <small class="episode-meta">Approx. runtime: TBD</small>
       <a class="button" href="watch-02.html">Watch Episode 2</a>
     </div>
-  </div>
+  
 
+  <div class="episode-card episode-card--soon">
+    <div class="episode-badge episode-badge--soon">SOON</div>
+   <img class="episode-thumb episode-thumb--soon" src="imgs/ep-soon-thumb.jpg" alt="Coming soon">
+  <h3>Next Episode — Coming Soon</h3>
+  <small class="episode-meta">Approx. runtime: TBD</small>
+  <span class="button button--disabled">Coming Soon</span>
+</div>
+
+</div>
   <p>New drops and behind-the-scenes notes go on the <a href="updates.html">Updates</a> page.</p>
 </div>
 
@@ -109,6 +118,7 @@ It's fun, chaotic and full of action. I like monsters and all manner of madness 
            <img src="imgs/strength_home1.webp" alt="Strength Monsters Now Streaming">
         </footer>
     </main> 
+
 <audio id="sound-home" src="sounds/electric_buzzer1.mp3" preload="auto"></audio>
 <audio id="sound-members" src="sounds/electric_buzzer.mp3" preload="auto"></audio>
 <audio id="sound-articles" src="sounds/electric_buzzer1.mp3" preload="auto"></audio>
@@ -163,14 +173,42 @@ It's fun, chaotic and full of action. I like monsters and all manner of madness 
 </script>
 <script>
   const boltHoverSound = document.getElementById('bolt-hover-sfx');
+  const cardHoverSound = document.getElementById('hamburger-hover-sfx');
 
-  document.querySelectorAll('.bolt-point').forEach((li) => {
+  let lastHoverSfx = 0;
+
+  function playHoverSound(audioEl) {
+    if (!audioEl) return;
+    const now = Date.now();
+    if (now - lastHoverSfx < 120) return; // throttle
+    lastHoverSfx = now;
+    audioEl.currentTime = 0;
+    audioEl.play();
+  }
+
+  // Lightning bolt hover
+  document.querySelectorAll('.bolt-point').forEach(li => {
     li.addEventListener('mouseenter', () => {
-      boltHoverSound.currentTime = 0;
-      boltHoverSound.play();
+      playHoverSound(boltHoverSound);
+    });
+  });
+
+  // Episode buttons hover
+  document.querySelectorAll('a.button').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      playHoverSound(boltHoverSound);
+    });
+  });
+
+  // Episode card hover (NEW)
+  document.querySelectorAll('.episode-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      playHoverSound(cardHoverSound);
     });
   });
 </script>
+
+
 <script>
   const clickMap = {
     "link-home": "click-home",

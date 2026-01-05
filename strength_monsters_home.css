@@ -395,7 +395,28 @@ a.button:focus {
 /* Center only the button (not the whole card text) */
 .episode-card a.button {
   display: table;
-  margin: 0.75em auto 0;
+  margin: .75em auto 0;
+}
+
+.episode-badge--soon {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid rgba(65, 26, 38, 0.9);
+}
+
+.button--disabled {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 2px solid  rgba(65, 26, 38, 0.9);
+  border-radius: 10px;
+  text-decoration: none;
+
+  opacity: 0.6;
+  cursor: not-allowed;
+
+  /* keep it visually consistent with your real button */
+  background: rgba(65, 26, 38, 0.9);
+  color: rgba(244, 238, 240);
 }
 
 /*ARTICLE IMAGES*/
