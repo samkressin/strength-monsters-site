@@ -291,6 +291,41 @@ h2{
   background-repeat: no-repeat;
   background-position: center;
 }
+/* =========================
+   UPDATE PAGE COMPONENTS
+   ========================= */
+#updates-feed {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.update-post {
+  margin: 0 0 2.5rem 0;
+}
+
+.update-date {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.update-title {
+  margin: 0 0 0.75rem 0;
+}
+
+.update-body {
+  margin: 0;
+  line-height: 1.6;
+}
+
+#load-more-updates {
+  margin: 0 auto 2rem auto;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 
 /* =========================
    MEMBERS PAGE COMPONENTS
@@ -433,18 +468,18 @@ article a {
   color:rgb(64, 75, 110);
 }
 
-.signature{
+/*.signature{
   margin-left: 1rem;
   margin-bottom: .5rem;
-}
-
+}*/
+/*
 div p {
   opacity: 0;
   transform: scale(0);
   transition: 0.7s;
   font-size: 2rem;
-  color: white;
-}
+  color: rgb(255, 4, 184);
+}*/
 
 /*div:hover {
   box-shadow: 0 0 0 245px rgba(0, 0, 0, 0.7) inset;
@@ -872,3 +907,10 @@ article li::before {
     display: none;
   }
 }
+/* 
+#updates-feed p {
+  opacity: 1 !important;
+  transform: none !important;
+  color: #000 !important;
+  font-size: 1rem !important;
+} */
