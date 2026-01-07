@@ -1,0 +1,24 @@
+Updates-template.txt
+
+NEW UPDATE CHECKLIST
+Add new image to updates/media/ (optional)
+Open updates.json
+Copy the TEMPLATE post block
+Paste at the TOP of the array (right after [ )
+Fill in date/title/body/image
+Save
+Refresh updates.html (Live Server)
+
+TEMPLATE POST BLOCK (copy/paste below)
+
+{
+"date": "YYYY-MM-DD",
+"title": "TITLE GOES HERE",
+"body": "BODY GOES HERE",
+"image": ""
+},
+
+Notes
+Keep newest posts at the top
+If no image, leave "image": ""
+Filenames lowercase, hyphens, no spaces

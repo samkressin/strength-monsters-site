@@ -324,8 +324,80 @@ h2{
   padding: 0.75rem 1.25rem;
   font-size: 1rem;
   cursor: pointer;
+  background-color:rgb(194, 112, 46);
+  color: #fff;
+  border: 2px solid  rgba(65, 26, 38, 0.9);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+#load-more-updates:hover {
+  background-color: rgba(65, 26, 38, 0.9);
+  transform: scale(1.08);
+  box-shadow: 1px 1px  rgba(65, 26, 38, 0.9);
 }
 
+.update-date {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+
+.update-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.update-image {
+  display: block;
+  margin-top: 1rem;
+  max-width: 100%;
+  border-radius: 4px;
+}
+
+.update-post.latest {
+  border-left: 5px solid rgb(194, 112, 46); /* use your site’s accent */
+  padding-left: 1rem;
+}
+
+.update-post.latest .update-title: .update-post.latest {
+  border-left: 4px solid #b12a2a; /* use your site’s accent */
+  padding-left: 1rem;
+}
+
+.update-post.latest .update-title::after {
+  content: " — latest";
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+{
+  content: " — latest";
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* Divider between update posts */
+.update-post:not(:last-child) {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1.5px dashed rgba(0, 0, 0, 0.25);
+}
+
+/* Fade-in animation for update posts */
+.update-post {
+  animation: updateFadeIn 0.8s ease-out both;
+}
+
+@keyframes updateFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* =========================
    MEMBERS PAGE COMPONENTS
@@ -465,7 +537,7 @@ a.button:focus {
 
 
 article a {
-  color:rgb(64, 75, 110);
+  color:rgb(72, 102, 201);
 }
 
 /*.signature{

@@ -1,9 +1,10 @@
 [
   {
-    "date": "2026-01-05",
-    "title": "Updates are officially live",
-    "body": "This is the first members update. Going forward, I’ll post sketches, animation tests, and behind-the-scenes progress here as new episodes are built."
-  },
+  "date": "2026-01-05",
+  "title": "Updates are officially live",
+  "body": "This is the first members update...",
+  "image": "updates/media/test-sketch.jpg"
+},
   {
     "date": "2026-01-03",
     "title": "Animation test: walk cycle pass",

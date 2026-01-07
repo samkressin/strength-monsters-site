@@ -6,19 +6,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   let allPosts = [];
   let visibleCount = 0;
 
+  function formatDate(isoDate) {
+  const d = new Date(isoDate);
+  if (isNaN(d)) return isoDate; // fallback if date is weird
+  return d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+}
+
   function renderNextBatch() {
     const nextPosts = allPosts.slice(visibleCount, visibleCount + PAGE_SIZE);
+// Render Loop
+nextPosts.forEach((post, index) => {
+  let imageHTML = "";
+  if (post.image && String(post.image).trim() !== "") {
+    imageHTML = `<img class="update-image" src="${post.image}" alt="">`;
+  }
 
-    nextPosts.forEach((post) => {
-      const postHTML = `
-        <div class="update-post">
-          <p class="update-date">${post.date || ""}</p>
-          <h3 class="update-title">${post.title || ""}</h3>
-          <p class="update-body">${post.body || ""}</p>
-        </div>
-      `;
-      feed.insertAdjacentHTML("beforeend", postHTML);
-    });
+  const latestClass = (visibleCount === 0 && index === 0) ? "latest" : "";
+
+  const postHTML = `
+   <div class="update-post ${latestClass}" style="animation-delay:${index * 60}ms">
+      <p class="update-date">${post.date ? formatDate(post.date) : ""}</p>
+      <h3 class="update-title">${post.title || ""}</h3>
+      <p class="update-body">${post.body || ""}</p>
+      ${imageHTML}
+    </div>
+  `;
+
+  feed.insertAdjacentHTML("beforeend", postHTML);
+});
 
     visibleCount += nextPosts.length;
 
