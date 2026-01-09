@@ -399,6 +399,22 @@ h2{
   }
 }
 
+.update-video {
+  margin-top: 1rem;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.update-video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+
 /* =========================
    MEMBERS PAGE COMPONENTS
    ========================= */

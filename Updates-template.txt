@@ -16,6 +16,8 @@ TEMPLATE POST BLOCK (copy/paste below)
 "title": "TITLE GOES HERE",
 "body": "BODY GOES HERE",
 "image": ""
+"video": { "type": "vimeo", "id": "76979871" }
+"video": { "type": "youtube", "id": "dQw4w9WgXcQ" }
 },
 
 Notes

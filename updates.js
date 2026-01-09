@@ -12,25 +12,101 @@ document.addEventListener("DOMContentLoaded", async () => {
   return d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
 }
 
-  function renderNextBatch() {
-    const nextPosts = allPosts.slice(visibleCount, visibleCount + PAGE_SIZE);
-// Render Loop
-nextPosts.forEach((post, index) => {
-  let imageHTML = "";
-  if (post.image && String(post.image).trim() !== "") {
-    imageHTML = `<img class="update-image" src="${post.image}" alt="">`;
-  }
+function escapeHtml(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
-  const latestClass = (visibleCount === 0 && index === 0) ? "latest" : "";
+function buildVideoEmbed(video) {
+  if (!video || !video.type || !video.id) return "";
 
-  const postHTML = `
-   <div class="update-post ${latestClass}" style="animation-delay:${index * 60}ms">
-      <p class="update-date">${post.date ? formatDate(post.date) : ""}</p>
-      <h3 class="update-title">${post.title || ""}</h3>
-      <p class="update-body">${post.body || ""}</p>
-      ${imageHTML}
+  const type = String(video.type).toLowerCase().trim();
+  const id = String(video.id).trim();
+
+  // Basic allowlist: only safe characters for IDs
+  // YouTube IDs are usually [A-Za-z0-9_-], Vimeo IDs are digits
+  if (type === "youtube") {
+  if (!/^[a-zA-Z0-9_-]{6,}$/.test(id)) return "";
+  const src = `https://www.youtube-nocookie.com/embed/${id}`;
+  return `
+    <div class="update-video">
+      <iframe
+        src="${src}"
+        title="YouTube video embed"
+        loading="lazy"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
   `;
+}
+
+
+  if (type === "vimeo") {
+  if (!/^\d+$/.test(id)) return "";
+  const src = `https://player.vimeo.com/video/${id}`;
+  return `
+    <div class="update-video">
+      <iframe
+        src="${src}"
+        title="Vimeo video embed"
+        loading="lazy"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  `;
+}
+
+
+  return "";
+}
+
+  function renderNextBatch() {
+    const nextPosts = allPosts.slice(visibleCount, visibleCount + PAGE_SIZE);
+// ===============================
+// UPDATE RENDER LOOP (STABLE)
+// Supports: text, image, youtube, vimeo
+// Do NOT rename post.body / post.title
+// ===============================
+
+nextPosts.forEach((post, index) => {
+  const latestClass = (visibleCount === 0 && index === 0) ? "latest" : "";
+
+  let mediaHTML = "";
+
+  // Prefer video if present, otherwise use image
+  const videoHTML = buildVideoEmbed(post.video);
+ if (videoHTML) {
+  mediaHTML = videoHTML;
+} else if (post.image && String(post.image).trim() !== "") {
+  mediaHTML = `
+    <img
+      class="update-image"
+      src="${post.image}"
+      alt="${post.title || "Update image"}"
+      title="${post.title || "Update image"}"
+      loading="lazy"
+    >
+  `;
+}
+
+
+ const postHTML = `
+  <div class="update-post ${latestClass}" style="animation-delay:${index * 60}ms">
+    <p class="update-date">${post.date ? formatDate(post.date) : ""}</p>
+    <h3 class="update-title">${post.title || ""}</h3>
+    <p class="update-body">${post.body || ""}</p>
+    ${mediaHTML}
+  </div>
+`;
+
 
   feed.insertAdjacentHTML("beforeend", postHTML);
 });
