@@ -1,5 +1,11 @@
 [
   {
+  "type": "status",
+  "status": "Animating",
+  "summary": "Zombie Command, adding blinks, facial expressions and mouth movements to the first three Zombies.",
+  "updated": "2026-01-09"
+},
+  {
     "date": "2026-01-05",
     "title": "Updates are officially live",
     "body": "This is the first members update...",

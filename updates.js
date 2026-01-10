@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   return d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
 }
 
+let statusPost = null;
+
 function escapeHtml(str) {
   return String(str ?? "")
     .replace(/&/g, "&amp;")
@@ -128,6 +130,12 @@ nextPosts.forEach((post, index) => {
     if (!res.ok) throw new Error(`Could not load updates.json (HTTP ${res.status})`);
 
     allPosts = await res.json();
+    // Extract production status post (if present)
+statusPost = allPosts.find(p => p.type === "status") || null;
+
+// Remove status post from normal posts
+allPosts = allPosts.filter(p => p.type !== "status");
+
     if (!Array.isArray(allPosts) || allPosts.length === 0) {
       throw new Error("updates.json loaded, but it has no posts (or it isn't an array).");
     }
@@ -138,6 +146,21 @@ nextPosts.forEach((post, index) => {
     // Reset feed and render first batch
     feed.innerHTML = "";
     visibleCount = 0;
+    
+    if (statusPost) {
+  const statusHTML = `
+    <div class="update-status">
+      <div class="update-status-label">Current Production Status</div>
+      <div class="update-status-row">
+        <span class="update-status-state">${statusPost.status}</span>
+        ${statusPost.updated ? `<span class="update-status-date">Updated ${formatDate(statusPost.updated)}</span>` : ""}
+      </div>
+      <p class="update-status-summary">${statusPost.summary}</p>
+    </div>
+  `;
+  feed.insertAdjacentHTML("beforeend", statusHTML);
+}
+
     renderNextBatch();
 
     loadMoreBtn.addEventListener("click", renderNextBatch);
