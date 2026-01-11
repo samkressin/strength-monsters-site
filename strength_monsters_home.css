@@ -450,6 +450,82 @@ h2{
 }
 
 /* =========================
+   CONTACT PAGE COMPONENTS
+   ========================= */
+.contact-form {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 1rem;
+  max-width: 680px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.contact-label {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.7);
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: rgba(0,0,0,0.45);
+}
+
+.contact-status {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+button.contact-submit {
+  background-color: rgb(194, 112, 46);
+  color: #fff;
+  border: 2px solid rgba(65, 26, 38, 0.9);
+  border-radius: 10px;
+  text-decoration: none;
+
+  padding: 0.6em 1.2em;   /* ← THIS is missing */
+  font-size: 1rem;
+  font-weight: bold;
+
+  box-shadow: 2px 2px 0 rgba(65, 26, 38, 0.9);
+  cursor: pointer;
+}
+
+button.contact-submit:hover {
+  background-color: rgba(65, 26, 38, 0.9);
+  transform: scale(1.05);
+  box-shadow: 1px 1px  rgba(65, 26, 38, 0.9);
+  border-radius: 10px;
+}
+
+button.contact-submit:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(65, 26, 38, 0.9);
+}
+
+
+
+/* =========================
    MEMBERS PAGE COMPONENTS
    ========================= */
 /* Members layout wrapper */

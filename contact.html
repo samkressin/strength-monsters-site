@@ -7,6 +7,35 @@
     <title>Members | Strength Monsters</title>
     <link rel="shortcut icon" href="imgs/strength_bolt2.svg" type="image/x-icon">   
 </head>
+<script>
+  const form = document.getElementById("contact-form");
+  const statusEl = document.getElementById("contact-status");
+
+  if (form && statusEl) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.textContent = "Sending…";
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          form.reset();
+          statusEl.textContent = "Message sent. Thank you.";
+        } else {
+          statusEl.textContent = "Something went wrong. Please try again.";
+        }
+      } catch (err) {
+        statusEl.textContent = "Network error. Please try again.";
+      }
+    });
+  }
+</script>
+
     <body>  
      <header>
       <img src="imgs/Strength_Monsters_Header2.jpg" alt="Strength Monsters"/>
@@ -28,9 +57,35 @@
         <article>
             <h1>CONTACT</h1>
           
- <h2>Conact me here.
-</h2> 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat nostrum est dolore blanditiis incidunt fugiat nemo nulla earum, ipsa voluptatem cum soluta deleniti maxime dolor ullam eius error? Magnam, voluptates.</p><!-- 
+<h2>Send me a message.</h2>
+
+<p>If you have a question about the streaming site, or anything Strength Monsters-related, use the form below and I’ll get back to you.</p>
+
+<form id="contact-form" class="contact-form" method="POST" action="https://formspree.io/f/xeeejnkl">
+  <label>
+    <span class="contact-label">Name</span>
+    <input type="text" name="name" required autocomplete="name" />
+  </label>
+
+  <label>
+    <span class="contact-label">Email</span>
+    <input type="email" name="email" required autocomplete="email" />
+  </label>
+
+  <label>
+    <span class="contact-label">Message</span>
+    <textarea name="message" rows="6" required></textarea>
+  </label>
+
+  <!-- honeypot anti-spam (hidden to humans) -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit" class="contact-submit">Send Message</button>
+
+  <p id="contact-status" class="contact-status" aria-live="polite"></p>
+</form>
+
+<!-- 
             <p>Watch the Strength Monsters trailer!  </p>
                 <div style="padding:56.25% 0 0 0;position:relative;"><iframe
 src="https://player.vimeo.com/video/1150914909?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
